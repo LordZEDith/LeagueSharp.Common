@@ -1,52 +1,52 @@
-namespace LeagueSharp.Common
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
 
-    using LeagueSharp.Common.Data;
+#endregion
+
+/// <summary>
+///     Represents a damage spell that only occurs with a passive.
+/// </summary>
+internal class PassiveDamage
+{
+    #region Fields
 
     /// <summary>
-    ///     Gets the damage done to a target.
+    ///     The champion name
+    /// </summary>
+    public string ChampionName = "";
+
+    /// <summary>
+    ///     The get damage delegate.
+    /// </summary>
+    public GetDamageD GetDamage;
+
+    /// <summary>
+    ///     The is active delegate.
+    /// </summary>
+    public IsActiveD IsActive;
+
+    #endregion
+
+    #region Delegates
+
+    /// <summary>
+    ///     Gets the damage dealts to the unit.
     /// </summary>
     /// <param name="source">The source.</param>
     /// <param name="target">The target.</param>
-    /// <param name="level">The level.</param>
     /// <returns></returns>
-    public delegate double SpellDamageDelegate(Obj_AI_Base source, Obj_AI_Base target, int level);
+    public delegate double GetDamageD(Obj_AI_Hero source, Obj_AI_Base target);
 
     /// <summary>
-    ///     Represents a spell that deals damage.
+    ///     Gets whether this instance is active.
     /// </summary>
-    public class DamageSpell
-    {
-        #region Fields
+    /// <param name="source">The source.</param>
+    /// <param name="target">The target.</param>
+    /// <returns></returns>
+    public delegate bool IsActiveD(Obj_AI_Hero source, Obj_AI_Base target);
 
-        /// <summary>
-        ///     The calculated damage
-        /// </summary>
-        public double CalculatedDamage;
-
-        /// <summary>
-        ///     The damage delegate
-        /// </summary>
-        public SpellDamageDelegate Damage;
-
-        /// <summary>
-        ///     The damage type
-        /// </summary>
-        public Damage.DamageType DamageType;
-
-        /// <summary>
-        ///     The slot
-        /// </summary>
-        public SpellSlot Slot;
-
-        /// <summary>
-        ///     The stage
-        /// </summary>
-        public int Stage;
-
+    #endregion
+}
+    }
+}
         #endregion
     }
 
